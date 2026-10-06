@@ -1,0 +1,45 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "aae"
+version = "1.0.0"
+description = "Learning when to stay silent: acoustic abstention encoding fine-tunes an ASR audio encoder, decoder frozen, to return empty transcripts for non-speech audio"
+readme = "README.md"
+requires-python = ">=3.10,<3.13"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "Aditya Pujari", email = "adityapujari2324@gmail.com" }, { name = "Ajita Rattani" }]
+keywords = ["speech-recognition", "hallucination", "whisper", "audio-llm", "lora", "robustness"]
+classifiers = [
+    "Intended Audience :: Science/Research",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Multimedia :: Sound/Audio :: Speech",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+# The exact, pinned dependencies are in requirements.txt (one file; Python-version markers select the pins of the
+# main and legacy environments). setup.sh installs it and then this package with --no-deps. The list below is what
+# the `aae` modules import; transformers and hojo-asr come from requirements.txt.
+dependencies = ["numpy", "torch", "safetensors", "huggingface_hub", "pyyaml", "soundfile", "librosa", "jiwer",
+                "openai-whisper", "opencc-python-reimplemented"]
+
+[project.urls]
+Homepage = "https://github.com/pujariaditya/acoustic-abstention"
+Repository = "https://github.com/pujariaditya/acoustic-abstention"
+Checkpoints = "https://huggingface.co/RootAccess4Life/acoustic-abstention"
+
+[tool.setuptools.packages.find]
+include = ["aae*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W", "UP", "B"]

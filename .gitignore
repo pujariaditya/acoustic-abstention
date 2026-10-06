@@ -1,0 +1,23 @@
+# Environments, original models, corpora, staged audio, checkpoints and run outputs: fetched or rebuilt, never committed.
+# (anchored to the root: aae/models/ is source code)
+/envs/
+/models/
+/data/
+/checkpoints/
+/runs/
+*.pt
+*.safetensors
+*.npy
+*.wav
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+
+# Never commit credentials. The Hugging Face token is read from the environment only (scripts/upload_weights.py).
+.env
+*.token

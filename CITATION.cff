@@ -1,0 +1,42 @@
+cff-version: 1.2.0
+message: "If you use this software or its released checkpoints, please cite it."
+title: "Learning When to Stay Silent: Acoustic Abstention Encoding for Automatic Speech Recognition"
+version: 1.0.0
+date-released: 2026-11-01
+license: MIT
+repository-code: "https://github.com/pujariaditya/acoustic-abstention"
+url: "https://huggingface.co/RootAccess4Life/acoustic-abstention"
+abstract: >-
+  Automatic speech recognition (ASR) models can hallucinate transcripts from non-speech audio, including noise and
+  music. Acoustic Abstention Encoding (AAE) is a framework that fine-tunes a pretrained ASR model's audio encoder while
+  keeping its text decoder frozen. An abstention loss encourages empty non-speech transcripts, while a
+  feature-preservation loss keeps speech-containing representations close to the original encoder's. AAE requires no
+  speech transcripts for training and no additional inference modules. Across Whisper large-v3, Qwen3-ASR-1.7B,
+  ARK-ASR-3B and Hojo-ASR-V1, AAE reduces hallucination rates to at most 0.34% on three non-speech benchmarks. With
+  greedy decoding, English word error rates and Mandarin character error rates remain within 0.5 percentage points of
+  the original models across six speech test sets. Ablations show that feature preservation is essential to
+  suppressing non-speech hallucinations while retaining speech recognition.
+keywords:
+  - automatic speech recognition
+  - hallucination mitigation
+  - non-speech audio
+  - encoder fine-tuning
+  - feature preservation
+authors:
+  - family-names: "Pujari"
+    given-names: "Aditya"
+    affiliation: "University of North Texas"
+  - family-names: "Rattani"
+    given-names: "Ajita"
+    affiliation: "University of North Texas"
+references:
+  - type: conference-paper
+    title: "Calm-Whisper: Reduce Whisper Hallucination On Non-Speech By Calming Crazy Heads Down"
+    year: 2025
+    collection-title: "Proc. Interspeech"
+    identifiers:
+      - type: doi
+        value: "10.21437/Interspeech.2025-201"
+    notes: "The definition of the hallucination rate this work adopts, and the comparison on UrbanSound8K."
+    authors:
+      - name: "Wang et al."

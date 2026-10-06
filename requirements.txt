@@ -1,0 +1,49 @@
+# Every pin below is the version the reported numbers were produced with.
+#
+# One file, two interpreters: the four recognizers need incompatible transformers releases (Qwen3-ASR is native in
+# transformers 5; ARK-ASR's remote code and the hojo-asr package are written for transformers 4). setup.sh
+# installs this same file into envs/main (Python 3.12) and envs/legacy (Python 3.10); the markers select each
+# environment's versions. With uv, pass --index-strategy unsafe-best-match so each torch build comes from its index.
+--extra-index-url https://download.pytorch.org/whl/cu128
+--extra-index-url https://download.pytorch.org/whl/cu121
+
+# main (Python 3.12): Whisper large-v3, Qwen3-ASR-1.7B, data preparation, reporting
+torch==2.9.1+cu128 ; python_version >= "3.12"
+torchaudio==2.9.1+cu128 ; python_version >= "3.12"
+transformers==5.17.0 ; python_version >= "3.12"
+tokenizers==0.23.2 ; python_version >= "3.12"
+huggingface_hub==1.31.0 ; python_version >= "3.12"
+numpy==2.5.3 ; python_version >= "3.12"
+scipy==1.18.1 ; python_version >= "3.12"
+librosa==1.0.0 ; python_version >= "3.12"
+soundfile==0.12.1 ; python_version >= "3.12"
+pyarrow==25.0.1 ; python_version >= "3.12"
+pytest==9.1.1 ; python_version >= "3.12"
+silero-vad==6.2.3 ; python_version >= "3.12"      # the VAD baseline (aae.vad)
+scikit-learn==1.9.1 ; python_version >= "3.12"    # probes and t-SNE (aae.separability)
+matplotlib==3.11.2 ; python_version >= "3.12"     # its figure
+
+# legacy (Python 3.10): ARK-ASR-3B, Hojo-ASR-V1
+torch==2.5.1+cu121 ; python_version < "3.12"
+torchaudio==2.5.1+cu121 ; python_version < "3.12"
+transformers==4.57.6 ; python_version < "3.12"
+tokenizers==0.22.2 ; python_version < "3.12"
+huggingface_hub==0.36.2 ; python_version < "3.12"
+numpy==2.2.6 ; python_version < "3.12"
+scipy==1.15.3 ; python_version < "3.12"
+librosa==0.11.0 ; python_version < "3.12"
+soundfile==0.14.0 ; python_version < "3.12"
+accelerate==1.12.0 ; python_version < "3.12"
+hojo-asr==0.1.3 ; python_version < "3.12"
+sentencepiece==0.2.2 ; python_version < "3.12"
+
+# both
+openai-whisper==20250625
+tiktoken==0.14.0
+regex==2026.9.10
+safetensors==0.8.0
+soxr==1.1.0
+numba==0.67.0
+jiwer==4.0.0
+opencc-python-reimplemented==0.1.7
+pyyaml==6.0.3

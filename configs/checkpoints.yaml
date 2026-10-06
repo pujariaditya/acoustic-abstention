@@ -1,0 +1,30 @@
+# The exact training arguments of every released checkpoint, taken from its training.json.
+# `python -m aae.train --model <model> --variant <variant>` takes these as its defaults, and scripts/train.sh
+# <model> <variant> passes them explicitly (the only way to select hojo-asr-v1/aae-run1 and whisper-large-v3/aae-8500).
+# Shared by all: lr 1e-4 (100 warm-up steps, constant), clip 1.0, seed 0, clean_p 0.2, SNR -5..20 dB,
+# LoRA alpha = 2 x rank. The variant name selects the objective (see aae/train.py).
+
+whisper-large-v3/aae:                {variant: aae, steps: 9250, units: 2, accum: 4, rank: 16}   # 5.90M params
+whisper-large-v3/aae-8500:           {variant: aae, steps: 8500, units: 2, accum: 4, rank: 16}   # 5.90M params
+whisper-large-v3/no-preservation:    {variant: no-preservation, steps: 8500, units: 4, accum: 2, rank: 16}   # 5.90M params
+whisper-large-v3/transcript-ce:      {variant: transcript-ce, steps: 8500, units: 4, accum: 2, rank: 16}   # 5.90M params
+whisper-large-v3/independent-noise:  {variant: independent-noise, steps: 8500, units: 4, accum: 2, rank: 16}   # 5.90M params
+whisper-large-v3/decoder-adapter:    {variant: decoder-adapter, steps: 8500, units: 4, accum: 2, rank: 9}   # 2.95M params
+whisper-large-v3/decoder-kl:         {variant: decoder-kl, steps: 8500, units: 4, accum: 2, rank: 18, lam: 50}   # 5.90M params
+whisper-large-v3/decoder-kl-1:       {variant: decoder-kl, steps: 8500, units: 4, accum: 2, rank: 18, lam: 1}   # 5.90M params
+qwen3-asr-1.7b/aae:                  {variant: aae, steps: 8500, units: 1, accum: 8, rank: 16}   # 3.62M params
+qwen3-asr-1.7b/no-preservation:      {variant: no-preservation, steps: 8500, units: 4, accum: 2, rank: 16}   # 3.62M params
+qwen3-asr-1.7b/transcript-ce:        {variant: transcript-ce, steps: 8500, units: 4, accum: 2, rank: 16}   # 3.62M params
+qwen3-asr-1.7b/independent-noise:    {variant: independent-noise, steps: 8500, units: 4, accum: 2, rank: 16}   # 3.62M params
+qwen3-asr-1.7b/decoder-adapter:      {variant: decoder-adapter, steps: 8500, units: 4, accum: 2, rank: 9}   # 3.61M params
+ark-asr-3b/aae:                      {variant: aae, steps: 8500, units: 1, accum: 8, rank: 16}   # 6.14M params
+ark-asr-3b/no-preservation:          {variant: no-preservation, steps: 8500, units: 4, accum: 2, rank: 16}   # 6.14M params
+ark-asr-3b/transcript-ce:            {variant: transcript-ce, steps: 8500, units: 4, accum: 2, rank: 16}   # 6.14M params
+ark-asr-3b/independent-noise:        {variant: independent-noise, steps: 8500, units: 4, accum: 2, rank: 16}   # 6.14M params
+ark-asr-3b/decoder-adapter:          {variant: decoder-adapter, steps: 8500, units: 4, accum: 2, rank: 9}   # 4.15M params
+hojo-asr-v1/aae:                     {variant: aae, steps: 8500, units: 1, accum: 8, rank: 16, zh_share: 0.4}   # 7.29M params
+hojo-asr-v1/aae-run1:                {variant: aae, steps: 8500, units: 1, accum: 8, rank: 16}   # 7.29M params
+hojo-asr-v1/no-preservation:         {variant: no-preservation, steps: 8500, units: 4, accum: 2, rank: 16}   # 7.29M params
+hojo-asr-v1/transcript-ce:           {variant: transcript-ce, steps: 8500, units: 4, accum: 2, rank: 16}   # 7.29M params
+hojo-asr-v1/independent-noise:       {variant: independent-noise, steps: 8500, units: 4, accum: 2, rank: 16}   # 7.29M params
+hojo-asr-v1/decoder-adapter:         {variant: decoder-adapter, steps: 8500, units: 4, accum: 2, rank: 9}   # 6.64M params
